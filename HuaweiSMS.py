@@ -45,6 +45,10 @@ class HuaweiSMS(object):
         url = '{}/api/monitoring/status'.format(self.url)
         return self.get_page(url)
 
+    def get_traffic(self):
+        url = '{}/api/monitoring/traffic-statistics'.format(self.url)
+        return self.get_page(url)
+
     def get_sms(self,readcount='20'):
         url = '{}/api/sms/sms-list'.format(self.url)
         data = '<?xml version="1.0" encoding="UTF-8"?><request><PageIndex>1</PageIndex><ReadCount>{}</ReadCount><BoxType>1</BoxType><SortType>0</SortType><Ascending>0</Ascending><UnreadPreferred>0</UnreadPreferred></request>'.format(readcount)
@@ -72,8 +76,3 @@ class HuaweiSMS(object):
     def get_notifications(self):
         url = '{}/api/monitoring/check-notifications'.format(self.url)
         return self.get_page(url)
-
-
-# Example getting unread SMS messages
-SMS = HuaweiSMS()
-print SMS.get_unread()
